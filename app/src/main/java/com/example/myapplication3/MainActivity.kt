@@ -7,12 +7,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.example.myapplication3.network.ApiService
 import com.example.myapplication3.network.ApiCallback
+import com.example.myapplication3.ui.theme.MyApplication3Theme
 import org.json.JSONArray
 
 class MainActivity : ComponentActivity() {
@@ -23,13 +24,20 @@ class MainActivity : ComponentActivity() {
         apiService = ApiService(this)
 
         setContent {
-            MoviesScreen(apiService)
+            MyApplication3Theme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    MovieApp(apiService)
+                }
+            }
         }
     }
 }
 
 @Composable
-fun MoviesScreen(apiService: ApiService) {
+fun MovieApp(apiService: ApiService) {
     var title by remember { mutableStateOf("") }
     var genre by remember { mutableStateOf("") }
     var director by remember { mutableStateOf("") }
@@ -39,15 +47,15 @@ fun MoviesScreen(apiService: ApiService) {
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Create and Get Movies",
-            style = MaterialTheme.typography.headlineSmall
+            text = "Movies App",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(bottom = 16.dp)
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
             value = title,
@@ -95,26 +103,32 @@ fun MoviesScreen(apiService: ApiService) {
 
         Button(
             onClick = {
-                if (title.isNotEmpty() && genre.isNotEmpty() && director.isNotEmpty() && rating.isNotEmpty()) {
-                    val ratingValue = rating.toFloatOrNull() ?: 0f
-                    if (ratingValue in 0f..5f) {
-                        apiService.createMovie(title, genre, director, ratingValue, object : ApiCallback {
-                            override fun onSuccess(response: String) {
-                                title = ""
-                                genre = ""
-                                director = ""
-                                rating = ""
-                            }
-
-                            override fun onError(error: String) {
-                                Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-                            }
-                        })
-                    }
+                if (title.isBlank() || genre.isBlank() || director.isBlank() || rating.isBlank()) {
+                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    return@Button
                 }
+
+                val ratingValue = rating.toFloatOrNull()
+                if (ratingValue == null || ratingValue !in 0f..5f) {
+                    Toast.makeText(context, "Rating must be between 0 and 5", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                apiService.createMovie(title, genre, director, ratingValue, object : ApiCallback {
+                    override fun onSuccess(response: String) {
+                        title = ""
+                        genre = ""
+                        director = ""
+                        rating = ""
+                        Toast.makeText(context, "Movie created successfully", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onError(error: String) {
+                        Toast.makeText(context, error, Toast.LENGTH_LONG).show()
+                    }
+                })
             },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3B5998))
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Create Movie")
         }
@@ -134,30 +148,31 @@ fun MoviesScreen(apiService: ApiService) {
                                 moviesText.append("Title: ${movie.optString("title")}\n")
                                 moviesText.append("Genre: ${movie.optString("genre")}\n")
                                 moviesText.append("Director: ${movie.optString("director")}\n")
-                                moviesText.append("Rating: ${movie.optDouble("rating")}/5\n\n")
+                                moviesText.append("Rating: ${movie.optDouble("rating")}/5\n")
+                                moviesText.append("------------------------\n")
                             }
 
-                            moviesList = if (moviesText.isEmpty()) "No movies available"
-                            else moviesText.toString()
-
+                            moviesList = moviesText.toString().ifEmpty { "No movies available" }
                         } catch (e: Exception) {
-                            moviesList = "No movies available"
+                            moviesList = "Error loading movies"
                         }
                     }
 
                     override fun onError(error: String) {
-                        moviesList = "No movies available"
+                        moviesList = "Error: $error"
                     }
                 })
             },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3B5998))
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text("Show Movies")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = moviesList)
+        Text(
+            text = moviesList,
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
