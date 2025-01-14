@@ -44,23 +44,23 @@ Information Systems Project
   - ApiService.java: Handles all communication with your server.
   - ApiCallback.java: Interface for handling success/failure responses.
 
-- **Creating a Movie:**
-   User fills in the text fields (title, genre, director, rating)
-   When "Create Movie" button is clicked:
-    - Validates all fields are filled.
-    - Creates a JSON object with the movie data.
-    - Sends a POST request to your API with the JWT token.
-    - On success: Clears fields and shows success message.
-    - On failure: Shows error message.
+  - **Creating a Movie:**  
+  User fills in the text fields (title, genre, director, rating)
+  When "Create Movie" button is clicked:
+  - Validates all fields are filled.
+  - Creates a JSON object with the movie data.
+  - Sends a POST request to your API with the JWT token.
+  - On success: Clears fields and shows success message.
+  - On failure: Shows error message.
 
-- **Showing Movies:**
+  - **Showing Movies:**  
   When "Show Movies" button is clicked:
   - Sends a GET request to your API.
   - Gets back a list of movies in JSON format.
   - Converts the JSON data into readable text.
   - Displays each movie's details in the app.
 
-- **Error Handling:**
+  - **Error Handling:**  
   Shows user-friendly messages if something goes wrong.
   Validates input before sending to server.
   Handles network errors and server errors.
