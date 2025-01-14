@@ -36,7 +36,7 @@ public class ApiService {
             movieData.put("rating", rating);
         } catch (Exception e) {
             e.printStackTrace();
-            callback.onError("Error creando el JSON de la película: " + e.getMessage());
+            callback.onError("Error creating the film JSON: " + e.getMessage());
             return;
         }
 
@@ -53,7 +53,7 @@ public class ApiService {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        callback.onError("Error en la solicitud para crear la película: " + error.toString());
+                        callback.onError("Error creating the film: " + error.toString());
                     }
                 }) {
             @Override
@@ -83,7 +83,7 @@ public class ApiService {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        callback.onError("Error en la solicitud de obtener películas: " + error.toString());
+                        callback.onError("Error fetching films: " + error.toString());
                     }
                 }) {
             @Override
