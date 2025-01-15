@@ -30,8 +30,7 @@ Information Systems Project
 ## Screenshots
 
 1. **Home Screen**
-![Home Screen](images/HomeScreen.png | width=300)
-
+<img src="images/HomeScreen.png" width="300" alt="Home Screen">
 2. **Create Movie**
 ![Create Movie](images/CreateMovie.png | width=200)
 
