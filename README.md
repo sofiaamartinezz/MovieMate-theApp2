@@ -17,10 +17,9 @@ Information Systems Project
 
 ## Functionality Overview 
 1. **Mobile Application**
-  - Users can create movies by entering their details in a simple form
-  - A list of all movies is displayed, allowing users to see the collection they've built.
-  - Error handling ensures a smooth user experience.
-
+   - Users can create movies by entering their details in a simple form
+   - A list of all movies is displayed, allowing users to see the collection they've built.
+   - Error handling ensures a smooth user experience.
 2. **Web Application and API**
    - The backend API, built with ASP.NET Core, provides endpoints for creating and retrieving movies.
    - The database stores movie information, including title, director, genre and ratings.
@@ -31,10 +30,11 @@ Information Systems Project
 ## Screenshots
 
 1. **Home Screen**
-
+![Home Screen](images/Screenshot_20250106_235857.png)
 2. **Create Movie**
-
+![Create Movie](images/Captura%20de%20pantalla%202025-01-07%20012120.png)
 3. **Show movies**
+![Show Movies](images/Screenshot_20250106_235559.png)
 
 ---
 
@@ -45,23 +45,23 @@ Information Systems Project
   - ApiCallback.java: Interface for handling success/failure responses.
 
 - **Creating a Movie:**  
-User fills in the text fields (title, genre, director, rating)
-When "Create Movie" button is clicked:
-  - Validates all fields are filled.
-  - Creates a JSON object with the movie data.
-  - Sends a POST request to your API with the JWT token.
-  - On success: Clears fields and shows success message.
-  - On failure: Shows error message.
+  - User fills in the text fields (title, genre, director, rating)
+  - When "Create Movie" button is clicked:
+    - Validates all fields are filled.
+    - Creates a JSON object with the movie data.
+    - Sends a POST request to your API with the JWT token.
+    - On success: Clears fields and shows success message.
+    - On failure: Shows error message.
 
 - **Showing Movies:**  
-When "Show Movies" button is clicked:
-  - Sends a GET request to your API.
-  - Gets back a list of movies in JSON format.
-  - Converts the JSON data into readable text.
-  - Displays each movie's details in the app.
+  - When "Show Movies" button is clicked:
+    - Sends a GET request to your API.
+    - Gets back a list of movies in JSON format.
+    - Converts the JSON data into readable text.
+    - Displays each movie's details in the app.
 
 - **Error Handling:**  
-Shows user-friendly messages if something goes wrong.
-Validates input before sending to server.
-Handles network errors and server errors.
+  - Shows user-friendly messages if something goes wrong.
+  - Validates input before sending to server.
+  - Handles network errors and server errors.
 
