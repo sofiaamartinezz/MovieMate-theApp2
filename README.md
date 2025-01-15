@@ -30,13 +30,13 @@ Information Systems Project
 ## Screenshots
 
 1. **Home Screen**
-![Home Screen](images/HomeScreen.png | width=300))
+![Home Screen](images/HomeScreen.png | width=300)
 
 2. **Create Movie**
-![Create Movie](images/CreateMovie.png | width=200))
+![Create Movie](images/CreateMovie.png | width=200)
 
 3. **Show movies**
-![Show Movies](images/ShowMovies.png | width=100))
+![Show Movies](images/ShowMovies.png | width=100)
 
 ---
 
