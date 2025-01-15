@@ -31,11 +31,12 @@ Information Systems Project
 
 1. **Home Screen**
 <img src="images/HomeScreen.png" width="300" alt="Home Screen">
+
 2. **Create Movie**
-![Create Movie](images/CreateMovie.png | width=200)
+<img src="images/CreateMovie.png" width="300" alt="Create Movie">
 
 3. **Show movies**
-![Show Movies](images/ShowMovies.png | width=100)
+<img src="images/ShowMovies.png" width="300" alt="Show Movies">
 
 ---
 
