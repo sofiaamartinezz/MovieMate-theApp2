@@ -30,11 +30,13 @@ Information Systems Project
 ## Screenshots
 
 1. **Home Screen**
-![Home Screen](images/Screenshot_20250106_235857.png)
+![Home Screen](images/HomeScreen.png | width=300))
+
 2. **Create Movie**
-![Create Movie](images/Captura%20de%20pantalla%202025-01-07%20012120.png)
+![Create Movie](images/CreateMovie.png | width=200))
+
 3. **Show movies**
-![Show Movies](images/Screenshot_20250106_235559.png)
+![Show Movies](images/ShowMovies.png | width=100))
 
 ---
 
